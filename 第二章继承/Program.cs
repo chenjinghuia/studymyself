@@ -27,8 +27,18 @@ namespace 第二章继承
         }
         class Dog : Pet
         {
+            static int num;
+            static Dog()
+            {
+                num = 0;
+            }
            public Dog(string gouname):base(gouname)
             {
+                num++;
+            }
+            static public void Counts()
+            {
+                Console.WriteLine("dog number = " + num);
             }
             new public void PrintName()
             {
@@ -64,7 +74,7 @@ namespace 第二章继承
         }
         static void Main(string[] args)
         {
-            Pet[] pets = new Pet[] {new Dog("jack"),new Cat("Tom") };
+            Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
             for (int i=0;i<pets.Length;i++)
             {
                 pets[i].PrintName();
@@ -74,6 +84,8 @@ namespace 第二章继承
             ICatchMice catchm=(ICatchMice)c;
             c.CatchMice();
             catchm.CatchMice();
+
+            Dog.Counts();
             /*Dog dog = new Dog();
             Cat cat = new Cat();
             dog.Name = "jack";
