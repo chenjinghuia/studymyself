@@ -16,12 +16,23 @@ namespace 第二章继承
             public Pet(string petname)
             {
                 Name = petname;
+                _age = 0;
             }
             protected string Name;
+            protected int _age;
             public void PrintName()
             {
                 Console.WriteLine("pet's name is:" + Name);
             }
+        public void ShowAge()
+        {
+            Console.WriteLine(Name + "'s age =" + _age);
+        }
+        public static Pet operator ++(Pet pet)
+        {
+            pet._age++;
+            return pet;
+        }
             abstract public void Speak();//抽象基类,abstract定义抽象speak方法
         }
     //1.sealed是定义为密闭类，就是无法在其子类中在进行重写：比如狗类中的叫声基本都是wow，所以当我们派生类定义了一个拉布拉多的狗，则不可以再重写狗叫声的方法。
@@ -121,6 +132,12 @@ namespace 第二章继承
 
             Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
             dog3.Speak();
+
+            for(int j=0;j<pets.Length;j++)
+            {
+                pets[j]++;
+                pets[j].ShowAge();
+            }
 
 
            
