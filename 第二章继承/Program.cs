@@ -50,6 +50,10 @@ namespace 第二章继承
             {
                 Console.WriteLine(Name + " is speaking:" + "wow");
             }
+            public static implicit operator Cat(Dog dog)
+            {
+                return new Cat(dog.Name);
+            }
     }
         static class PetGuide//定义一个静态类
         {
@@ -79,6 +83,10 @@ namespace 第二章继承
             {
                 Console.WriteLine(Name+" is speaking:" + "miao");
             }
+            public static explicit operator Dog(Cat cat)
+            {
+            return new Dog(cat.Name);
+            }
         }
     class Program
     {
@@ -104,8 +112,16 @@ namespace 第二章继承
                 Console.WriteLine(oi.ToString());
                 int j = (int)oi;
                 Console.WriteLine(j);
-
             }
+            Dog dog2 = new Dog("gougou");
+            dog2.Speak();
+
+            Cat cat = dog2;//隐式转换，转成猫猫的叫声
+            cat.Speak();
+
+            Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
+            dog3.Speak();
+
 
            
 
