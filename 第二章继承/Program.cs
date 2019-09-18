@@ -99,57 +99,99 @@ namespace 第二章继承
             return new Dog(cat.Name);
             }
         }
+    public class Cage<T>
+    {
+        T[] array;
+        readonly int Size;
+        int num;
+        public Cage(int n)
+        {
+            Size = n;
+            num = 0;
+            array = new T[Size];
+        }
+        public void PutIn(T Pet)
+        {
+            if(num<Size)
+            {
+                array[num++] = Pet;
+            }
+            else
+            {
+                Console.WriteLine("Cage is full!");
+            }
+        }
+        public  T TakeOut()
+        {
+            if (num > 0)
+            {
+                return array[--num];
+            }
+            else
+            {
+                Console.WriteLine("Cage is empty!");
+                return default(T);
+            }
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
-            for (int i=0;i<pets.Length;i++)
-            {
-                pets[i].PrintName();
-                pets[i].Speak();
-            }
-            Cat c = new Cat("小猫猫");
-            ICatchMice catchm=(ICatchMice)c;//把c强制转化为接口ICatchMice的类型
-            c.CatchMice();//通过对象调用
-            catchm.CatchMice();//通过接口调用
+                /*Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
+                for (int i=0;i<pets.Length;i++)
+                {
+                    pets[i].PrintName();
+                    pets[i].Speak();
+                }
+                Cat c = new Cat("小猫猫");
+                ICatchMice catchm=(ICatchMice)c;//把c强制转化为接口ICatchMice的类型
+                c.CatchMice();//通过对象调用
+                catchm.CatchMice();//通过接口调用
 
-            Dog.Counts();
-            Dog dog = new Dog("DJ");
-            dog.HowToFeedDog();
-            {
-                int i = 3;
-                object oi = i;
-                Console.WriteLine(oi.ToString());
-                int j = (int)oi;
-                Console.WriteLine(j);
-            }
-            Dog dog2 = new Dog("gougou");
-            dog2.Speak();
+                Dog.Counts();
+                Dog dog = new Dog("DJ");
+                dog.HowToFeedDog();
+                {
+                    int i = 3;
+                    object oi = i;
+                    Console.WriteLine(oi.ToString());
+                    int j = (int)oi;
+                    Console.WriteLine(j);
+                }
+                Dog dog2 = new Dog("gougou");
+                dog2.Speak();
 
-            Cat cat = dog2;//隐式转换，转成猫猫的叫声
-            cat.Speak();
+                Cat cat = dog2;//隐式转换，转成猫猫的叫声
+                cat.Speak();
 
-            Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
-            dog3.Speak();
+                Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
+                dog3.Speak();
 
-            for(int j=0;j<pets.Length;j++)
-            {
-                pets[j]++;
-                pets[j].ShowAge();
-            }
+                for(int j=0;j<pets.Length;j++)
+                {
+                    pets[j]++;
+                    pets[j].ShowAge();
+                }
+                */
+
+                /*Dog dog = new Dog();
+                Cat cat = new Cat();
+                dog.Name = "jack";
+                cat.Name = "Tom";
+                dog.PrintName();
+                cat.PrintName();
+                dog.Speak();
+                cat.Speak();*/
+
+                var dogcage = new Cage<Dog>(1);
+                dogcage.PutIn(new Dog("A"));
+                dogcage.PutIn(new Dog("B"));
+
+                var dog = dogcage.TakeOut();
+                dog.PrintName();
 
 
-           
-
-            /*Dog dog = new Dog();
-            Cat cat = new Cat();
-            dog.Name = "jack";
-            cat.Name = "Tom";
-            dog.PrintName();
-            cat.PrintName();
-            dog.Speak();
-            cat.Speak();*/
 
 
         }
