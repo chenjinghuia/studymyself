@@ -65,9 +65,10 @@ namespace 第二章继承
             {
                 return new Cat(dog.Name);
             }
-        public void IsHappy<T>(T Target)//5-2泛型方法
+        public void IsHappy<T>(T Target)where T:Pet//5-2泛型方法
         {
-            Console.WriteLine("Happy:" + Target.ToString());
+            Console.WriteLine("Happy:");
+            Target.PrintName();
         }
     }
         static class PetGuide//定义一个静态类
@@ -199,9 +200,12 @@ namespace 第二章继承
             var dog = dogcage.TakeOut();
             dog.PrintName();*/
 
-            var dog = new Dog("A");//5-2泛型方法
+            /*var dog = new Dog("A");//5-2泛型方法
             dog.IsHappy<person>(new person());
-            dog.IsHappy<int>(3);
+            dog.IsHappy<int>(3);*/
+
+            var dog = new Dog("A");//5-3约束
+            dog.IsHappy<Cat>(new Cat("Tom"));
 
 
         }
