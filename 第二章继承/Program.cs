@@ -65,6 +65,10 @@ namespace 第二章继承
             {
                 return new Cat(dog.Name);
             }
+        public void IsHappy<T>(T Target)//5-2泛型方法
+        {
+            Console.WriteLine("Happy:" + Target.ToString());
+        }
     }
         static class PetGuide//定义一个静态类
         {
@@ -99,22 +103,22 @@ namespace 第二章继承
             return new Dog(cat.Name);
             }
         }
-    public class Cage<T>
+    public class Cage<T>//定义一个泛型类
     {
-        T[] array;
+        T[] kucun;
         readonly int Size;
         int num;
-        public Cage(int n)
+        public Cage(int n)//构造cage存量函数
         {
             Size = n;
             num = 0;
-            array = new T[Size];
+            kucun = new T[Size];
         }
         public void PutIn(T Pet)
         {
             if(num<Size)
             {
-                array[num++] = Pet;
+                kucun[num++] = Pet;
             }
             else
             {
@@ -125,7 +129,7 @@ namespace 第二章继承
         {
             if (num > 0)
             {
-                return array[--num];
+                return kucun[--num];
             }
             else
             {
@@ -134,64 +138,70 @@ namespace 第二章继承
             }
         }
     }
+    public class person
+    {
+
+    }
     class Program
     {
         static void Main(string[] args)
         {
-                /*Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
-                for (int i=0;i<pets.Length;i++)
-                {
-                    pets[i].PrintName();
-                    pets[i].Speak();
-                }
-                Cat c = new Cat("小猫猫");
-                ICatchMice catchm=(ICatchMice)c;//把c强制转化为接口ICatchMice的类型
-                c.CatchMice();//通过对象调用
-                catchm.CatchMice();//通过接口调用
+            /*Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
+            for (int i=0;i<pets.Length;i++)
+            {
+                pets[i].PrintName();
+                pets[i].Speak();
+            }
+            Cat c = new Cat("小猫猫");
+            ICatchMice catchm=(ICatchMice)c;//把c强制转化为接口ICatchMice的类型
+            c.CatchMice();//通过对象调用
+            catchm.CatchMice();//通过接口调用
 
-                Dog.Counts();
-                Dog dog = new Dog("DJ");
-                dog.HowToFeedDog();
-                {
-                    int i = 3;
-                    object oi = i;
-                    Console.WriteLine(oi.ToString());
-                    int j = (int)oi;
-                    Console.WriteLine(j);
-                }
-                Dog dog2 = new Dog("gougou");
-                dog2.Speak();
+            Dog.Counts();
+            Dog dog = new Dog("DJ");
+            dog.HowToFeedDog();
+            {
+                int i = 3;
+                object oi = i;
+                Console.WriteLine(oi.ToString());
+                int j = (int)oi;
+                Console.WriteLine(j);
+            }
+            Dog dog2 = new Dog("gougou");
+            dog2.Speak();
 
-                Cat cat = dog2;//隐式转换，转成猫猫的叫声
-                cat.Speak();
+            Cat cat = dog2;//隐式转换，转成猫猫的叫声
+            cat.Speak();
 
-                Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
-                dog3.Speak();
+            Dog dog3=(Dog)cat;//显示转换，转成狗狗的叫声
+            dog3.Speak();
 
-                for(int j=0;j<pets.Length;j++)
-                {
-                    pets[j]++;
-                    pets[j].ShowAge();
-                }
-                */
+            for(int j=0;j<pets.Length;j++)
+            {
+                pets[j]++;
+                pets[j].ShowAge();
+            }
+            */
 
-                /*Dog dog = new Dog();
-                Cat cat = new Cat();
-                dog.Name = "jack";
-                cat.Name = "Tom";
-                dog.PrintName();
-                cat.PrintName();
-                dog.Speak();
-                cat.Speak();*/
+            /*Dog dog = new Dog();
+            Cat cat = new Cat();
+            dog.Name = "jack";
+            cat.Name = "Tom";
+            dog.PrintName();
+            cat.PrintName();
+            dog.Speak();
+            cat.Speak();*/
 
-                var dogcage = new Cage<Dog>(1);
-                dogcage.PutIn(new Dog("A"));
-                dogcage.PutIn(new Dog("B"));
+            /*var dogcage = new Cage<Dog>(1);//5-1泛型类
+            dogcage.PutIn(new Dog("A"));
+            dogcage.PutIn(new Dog("B"));
 
-                var dog = dogcage.TakeOut();
-                dog.PrintName();
+            var dog = dogcage.TakeOut();
+            dog.PrintName();*/
 
-
+            var dog = new Dog("A");//5-2泛型方法
+            dog.IsHappy<person>(new person());
+            dog.IsHappy<int>(3);
 
 
         }
