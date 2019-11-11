@@ -273,6 +273,14 @@ namespace 第二章继承
             dic.Add("C", new Dog("A"));
             dic["A"].PrintName();
 
+            Console.WriteLine();
+            Stack<Pet> sta = new Stack<Pet>();
+            sta.Push(new Dog("A"));
+            sta.Push(new Dog("B"));
+            sta.Peek().PrintName();
+            sta.Pop();
+            sta.Peek().PrintName();
+
 
         }
     }
