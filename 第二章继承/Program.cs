@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace 第二章继承
 {
@@ -253,6 +254,19 @@ namespace 第二章继承
             Labrador labrador = new Labrador("A");
             labrador.Act(new SitDogCmd());
             labrador.Act(new SpeakDogCmd());
+
+            Console.WriteLine();
+            List<Dog> list = new List<Dog>();
+            list.Add(new Dog("A"));
+            list.Add(new Dog("B"));
+            list.Add(new Dog("C"));
+            list.RemoveAt(1);
+            for(int i=0;i<list.Count;++i)
+            {
+                list[i].PrintName();
+            }
+
+
         }
     }
 }
