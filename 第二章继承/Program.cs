@@ -266,6 +266,13 @@ namespace 第二章继承
                 list[i].PrintName();
             }
 
+            Console.WriteLine();
+            Dictionary<string, Dog> dic = new Dictionary<string, Dog>();
+            dic.Add("A", new Dog("A"));
+            dic.Add("B", new Dog("A"));
+            dic.Add("C", new Dog("A"));
+            dic["A"].PrintName();
+
 
         }
     }
