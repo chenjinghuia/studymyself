@@ -71,6 +71,10 @@ namespace 第二章继承
             Console.WriteLine("Happy:");
             Target.PrintName();
         }
+        public void YaoTail()
+        {
+            Console.WriteLine(Name + "狗狗摇尾巴！");
+        }
        
     } 
         public abstract class DogCmd
@@ -140,7 +144,11 @@ namespace 第二章继承
             {
             return new Dog(cat.Name);
             }
-        }
+            public void Miao()
+            {
+                Console.WriteLine(Name + "猫猫喵喵叫！");
+            }
+    }
     public class Cage<T>//定义一个泛型类
     {
         T[] kucun;
@@ -182,6 +190,7 @@ namespace 第二章继承
     }
     class Program
     {
+        delegate void Actcute();
         static void Main(string[] args)
         {
             /*Pet[] pets = new Pet[] {new Dog("Jack"),new Cat("Tom"),new Dog("Mick") };
@@ -246,6 +255,7 @@ namespace 第二章继承
 
             Console.WriteLine();
             Jiekou();
+            Weituo();
 
 
         }
@@ -281,7 +291,29 @@ namespace 第二章继承
             sta.Pop();
             sta.Peek().PrintName();
 
+            Console.WriteLine();
+            Queue<Pet> queue = new Queue<Pet>();
+            queue.Enqueue(new Dog("a"));
+            queue.Enqueue(new Dog("b"));
+            queue.Enqueue(new Dog("c"));
 
+            Pet pet;
+            pet = queue.Dequeue();
+            pet.PrintName();
+            pet = queue.Dequeue();
+            pet.PrintName();
+            pet = queue.Dequeue();
+            pet.PrintName();
+        }
+        static void Weituo()
+        {
+            Console.WriteLine();
+            Actcute del = null;
+            Dog dog = new Dog("A");
+            Cat cat = new Cat("B");
+            del = dog.YaoTail;
+            del += cat.Miao;
+            del();
         }
     }
 }
